@@ -89,7 +89,7 @@ def run_full_system(data_input, expected_output):
     main.main(scorer, io = mock_io)
 
     output = yaml.load(mock_io.stdout.getvalue())
-    nose.eq_(output, expected_output)
+    assert output == expected_output
 
 def test_system_basic():
     # Taken from the Proton spec
