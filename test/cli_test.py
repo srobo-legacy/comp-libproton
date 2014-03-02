@@ -22,18 +22,6 @@ def assert_run(relative_path):
     result_dict = yaml.load(result)
     return result_dict
 
-def test_run_the_template():
-    result_dict = assert_run("templates/yaml_template.yaml")
-
-    assert result_dict["version"] == "1.0.0"
-    assert result_dict["match_number"] == 0
-    assert result_dict["scores"] == {
-        "TLA1": helpers.tla_result_fixture(0),
-        "TLA2": helpers.tla_result_fixture(1),
-        "TLA3": helpers.tla_result_fixture(2),
-        "TLA4": helpers.tla_result_fixture(3),
-    }
-
 def check_by_input_file(input_name):
     input_file, expected_output = helpers.get_data("test/data/cli", input_name)
 
