@@ -12,7 +12,7 @@ def generate_output(file_reader, scorer):
     # Load also validates the input as far as possible
     helper.load(file_reader.read())
 
-    team_scoresheets = helper.team_scoresheets()
+    team_scoresheets = helper.team_scoresheets
 
     scores = None
     try:
