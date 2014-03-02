@@ -7,17 +7,17 @@ scores:
         disqualified: false
         zone: 0
     TLA2:
-        score: 5
+        score: 7
         present: true
         disqualified: false
         zone: 1
     TLA3:
-        score: 5
+        score: 9
         present: true
         disqualified: false
         zone: 2
     TLA4:
-        score: 5
+        score: 11
         present: true
         disqualified: false
         zone: 3

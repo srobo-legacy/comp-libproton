@@ -6,7 +6,10 @@ import yaml
 import helpers
 
 def run(relative_path):
-    process = subprocess.Popen(["./score.py",  relative_path], \
+    my_dir = os.path.dirname(os.path.realpath(__file__))
+    bacon_scorer = os.path.join(my_dir, 'data/cli/bacon_scorer.py')
+    assert os.path.exists(bacon_scorer), bacon_scorer
+    process = subprocess.Popen([bacon_scorer,  relative_path], \
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     retcode = process.wait()
     return retcode, process
