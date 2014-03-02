@@ -77,10 +77,10 @@ def test_inner_error():
 
 # helper for system tests
 
-def run_full_system(data_input, expected_output):
+def run_full_system(input_stream, expected_output):
     mock_io = mock.Mock()
     mock_io.stdout = StringIO.StringIO()
-    mock_io.stdin = StringIO.StringIO(data_input)
+    mock_io.stdin = input_stream
     mock_io.argv = ['test']
 
     def scorer(teams_data):
@@ -91,50 +91,11 @@ def run_full_system(data_input, expected_output):
     output = yaml.load(mock_io.stdout.getvalue())
     assert output == expected_output
 
-def test_system_basic():
-    # Taken from the Proton spec
-    data_input = """
-match_number: 3
-teams:
-    CLF:
-     squares : [[1,2,1],[1,0,1],[0,0,0]]
-     zone : 0
-    PSC:
-     squares : [[0,0,0],[0,2,0],[0,p,0]]
-     zone : 1
-    BGR:
-     squares : [[0,0,0],[3,0,0],[0,0,0]]
-     zone : 2
-    QEH1:
-     squares : [[0,0,0],[6,0,0],[0,0,0]]
-     zone : 3
-    """
-    data_output = """
-version: 1.0.0
-match_number: 3
-scores:
-    CLF:
-        score : 0
-        zone : 0
-    PSC:
-        score : 1
-        zone : 1
-    BGR:
-        score : 2
-        zone : 2
-    QEH1:
-        score : 3
-        zone: 3"""
-    data_output = {'version': '1.0.0',
-                   'match_number': 3,
-                   'scores': {
-                       'CLF': {'score': 0, 'zone': 0,
-                               'disqualified': False, 'present': True},
-                       'PSC': {'score': 1, 'zone': 1,
-                               'disqualified': False, 'present': True},
-                       'BGR': {'score': 2, 'zone': 2,
-                               'disqualified': False, 'present': True},
-                       'QEH1': {'score': 3, 'zone': 3,
-                                'disqualified': False, 'present': True}}}
-    run_full_system(data_input, data_output)
+for data_file in helpers.get_input_files("test/data/system"):
+    @nose.istest
+    def test_system():
+        data_input, data_output = helpers.get_data("test/data/system",
+                                                   data_file)
+        with open(data_input) as input_file:
+            run_full_system(input_file, data_output)
 
