@@ -5,10 +5,15 @@ import yaml
 
 import helpers
 
-def run(relative_path):
+def get_bacon_scorer():
     my_dir = os.path.dirname(os.path.realpath(__file__))
     bacon_scorer = os.path.join(my_dir, 'data/cli/bacon_scorer.py')
     assert os.path.exists(bacon_scorer), bacon_scorer
+
+    return bacon_scorer
+
+def run(relative_path):
+    bacon_scorer = get_bacon_scorer()
     process = subprocess.Popen([bacon_scorer,  relative_path], \
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     retcode = process.wait()
@@ -47,7 +52,8 @@ def test_stdin():
     zeros_input = open('test/data/cli/zero.yaml', 'r')
     zeros_output = yaml.load(open('test/data/cli/zero.out.yaml').read())
 
-    process = subprocess.Popen(["./score.py"], stdin=zeros_input, \
+    bacon_scorer = get_bacon_scorer()
+    process = subprocess.Popen([bacon_scorer], stdin=zeros_input, \
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     retcode = process.wait()
     if retcode != 0:
