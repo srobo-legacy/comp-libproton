@@ -1,0 +1,18 @@
+version: 1.0.0
+match_number: 4
+scores:
+    CLF:
+     score: 0
+     zone: 0
+     disqualified: false
+     present: false
+    PSC:
+     score: 1
+     zone: 1
+     disqualified: false
+     present: true
+    QEH:
+     score: 3
+     zone: 3
+     disqualified: false
+     present: true
