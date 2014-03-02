@@ -1,0 +1,74 @@
+match_number: 0
+teams:
+  TLA1:
+    zone: 0
+    robot_moved: false
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+      6: 0
+      7: 0
+    upright_tokens: 0
+  TLA2:
+    zone: 1
+    robot_moved: false
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+      6: 0
+      7: 0
+    upright_tokens: 0
+  TLA3:
+    zone: 2
+    robot_moved: false
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+      6: 0
+      7: 0
+    upright_tokens: 0
+  TLA4:
+    zone: 3
+    robot_moved: false
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+      6: 0
+      7: 0
+    upright_tokens: 0

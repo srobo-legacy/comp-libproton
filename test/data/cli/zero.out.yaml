@@ -1,0 +1,23 @@
+version: 1.0.0
+match_number: 0
+scores:
+    TLA1:
+        score: 0
+        present: true
+        disqualified: false
+        zone: 0
+    TLA2:
+        score: 0
+        present: true
+        disqualified: false
+        zone: 1
+    TLA3:
+        score: 0
+        present: true
+        disqualified: false
+        zone: 2
+    TLA4:
+        score: 0
+        present: true
+        disqualified: false
+        zone: 3
