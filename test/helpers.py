@@ -1,6 +1,11 @@
 
 import os
+import sys
 import yaml
+
+def path_bodge():
+    path = os.path.dirname(os.path.realpath(__file__)) + "/../libproton/"
+    sys.path.insert(0, path)
 
 def tla_result_fixture(zone_number, score = 0):
     return {
