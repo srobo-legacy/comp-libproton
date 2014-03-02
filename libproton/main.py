@@ -38,7 +38,7 @@ def get_reader(args, reader):
 
     return reader
 
-def main(scorer):
-    reader = get_reader(sys.argv, sys.stdin)
+def main(scorer, io = sys):
+    reader = get_reader(io.argv, io.stdin)
     output = generate_output(reader, scorer)
-    print yaml.dump(output)
+    yaml.dump(output, io.stdout)

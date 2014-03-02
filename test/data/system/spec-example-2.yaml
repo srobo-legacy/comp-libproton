@@ -1,0 +1,12 @@
+match_number: 4
+teams:
+    CLF:
+     zone: 0
+     present : false
+     squares : [[1,2,1],[1,0,1],[0,0,0]]
+    PSC:
+     zone: 1
+     squares : [[0,0,0],[0,2,0],[0,p,0]]
+    QEH:
+     zone: 3
+     squares : [[0,0,0],[6,0,0],[0,0,0]]

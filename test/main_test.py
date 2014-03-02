@@ -3,8 +3,11 @@ import mock
 import os
 import StringIO
 import sys
+import yaml
 
 import helpers
+
+import nose.tools as nose
 
 helpers.path_bodge()
 
@@ -71,3 +74,31 @@ def test_inner_error():
             assert exception_message in output
         finally:
             sys.stderr = orig_stderr
+
+# helper for system tests
+
+def run_full_system(input_stream, expected_output):
+    mock_io = mock.Mock()
+    mock_io.stdout = StringIO.StringIO()
+    mock_io.stdin = input_stream
+    mock_io.argv = ['test']
+
+    def scorer(teams_data):
+        return {name: data["zone"] for name, data in teams_data.items()}
+
+    main.main(scorer, io = mock_io)
+
+    print mock_io.stdout.getvalue()
+    print yaml.dump(expected_output)
+    output = yaml.load(mock_io.stdout.getvalue())
+    assert output == expected_output
+
+def test_system():
+    def check_system(data_file):
+        data_input, data_output = helpers.get_data("test/data/system",
+                                                   data_file)
+        with open(data_input) as input_file:
+            run_full_system(input_file, data_output)
+
+    for data_file in helpers.get_input_files("test/data/system"):
+        yield check_system, data_file
