@@ -96,7 +96,7 @@ def test_produce():
 
     whole = ph.produce(scores)
 
-    assert whole["version"] == "1.0.0"
+    assert whole["version"] == "1.0.0-rc1"
     assert whole["match_number"] == 1
     assert whole["scores"] == {
         "TLA1": helpers.tla_result_fixture(0, 0),
