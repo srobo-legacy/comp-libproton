@@ -5,6 +5,8 @@
 This is a library which simplifies the task of creating
 [Proton](https://github.com/samphippen/proton) compliant scoring scripts.
 
+It supports Python 2.7 and 3.x.
+
 ## API
 
 The following is a complete and minimal Proton compliant scorer, and shows
