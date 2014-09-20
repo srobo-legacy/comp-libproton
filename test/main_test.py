@@ -52,8 +52,8 @@ def test_get_reader_help():
             main.get_reader(['self', arg], mock_default)
             assert False, "Should have exited with usage information"
         except SystemExit as se:
-            assert "Usage: " in se.message
-            assert " self " in se.message
+            assert "Usage: " in se.args[0]
+            assert " self " in se.args[0]
 
     yield run, '-h'
     yield run, '--help'
