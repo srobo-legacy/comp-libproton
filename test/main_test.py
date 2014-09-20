@@ -1,4 +1,6 @@
 
+from __future__ import print_function
+
 import mock
 import os
 import StringIO
@@ -88,8 +90,8 @@ def run_full_system(input_stream, expected_output):
 
     main.main(scorer, io = mock_io)
 
-    print mock_io.stdout.getvalue()
-    print yaml.dump(expected_output)
+    print(mock_io.stdout.getvalue())
+    print(yaml.dump(expected_output))
     output = yaml.load(mock_io.stdout.getvalue())
     assert output == expected_output
 

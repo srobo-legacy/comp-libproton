@@ -1,4 +1,6 @@
 
+from __future__ import print_function
+
 import os
 import sys
 import traceback
@@ -18,7 +20,7 @@ def generate_output(file_reader, scorer):
     try:
         scores = scorer(team_scoresheets)
     except:
-        print >>sys.stderr, traceback.format_exc()
+        print(traceback.format_exc(), file=sys.stderr)
         exit(2)
 
     assert scores is not None

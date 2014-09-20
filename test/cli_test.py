@@ -1,4 +1,6 @@
 
+from __future__ import print_function
+
 import os
 import subprocess
 import yaml
@@ -22,7 +24,7 @@ def run(relative_path):
 def assert_run(relative_path):
     retcode, process = run(relative_path)
     if retcode != 0:
-        print process.stderr.read()
+        print(process.stderr.read())
 
     assert retcode == 0, "Bad return code scoring '{0}'.".format(relative_path)
 
@@ -57,7 +59,7 @@ def test_stdin():
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     retcode = process.wait()
     if retcode != 0:
-        print process.stderr.read()
+        print(process.stderr.read())
 
     assert retcode == 0, "Bad return code scoring from stdin."
 
