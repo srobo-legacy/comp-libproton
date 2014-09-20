@@ -10,7 +10,7 @@ try:
     # python 2, this module's not in python 3
     from StringIO import StringIO
     builtin_open = '__builtin__.open'
-except:
+except ImportError:
     # python 3, but this module _is_ in python 2 (and behaves differently)
     from io import StringIO
     builtin_open = 'builtins.open'

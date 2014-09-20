@@ -8,7 +8,7 @@ import yaml
 try:
     # python 3
     from .proton_helper import ProtonHelper
-except:
+except (ValueError, SystemError):
     # python 2
     from proton_helper import ProtonHelper
 
