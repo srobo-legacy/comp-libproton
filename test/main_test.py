@@ -55,7 +55,8 @@ def test_inner_error():
     mock_helper = mock.Mock()
     mock_helper_cls.return_value = mock_helper
 
-    mock_reader = mock.MagicMock(spec=file)
+    mock_reader = mock.Mock()
+    mock_reader.read = mock.Mock(return_value = '')
 
     mock_scorer = mock.Mock()
     exception_message = 'Boom!'
