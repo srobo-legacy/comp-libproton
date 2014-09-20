@@ -3,9 +3,17 @@ from __future__ import print_function
 
 import mock
 import os
-import StringIO
 import sys
 import yaml
+
+try:
+    # python 2, this module's not in python 3
+    from StringIO import StringIO
+    builtin_open = '__builtin__.open'
+except:
+    # python 3, but this module _is_ in python 2 (and behaves differently)
+    from io import StringIO
+    builtin_open = 'builtins.open'
 
 import helpers
 
@@ -13,7 +21,7 @@ helpers.path_bodge()
 
 import main
 
-@mock.patch('__builtin__.open')
+@mock.patch(builtin_open)
 def test_get_reader_file(open_mock):
     mock_default = mock.Mock()
     open_mock.return_value = open_return = mock.Mock()
@@ -25,7 +33,7 @@ def test_get_reader_file(open_mock):
 
     open_mock.assert_called_once_with(file_name, 'r')
 
-@mock.patch('__builtin__.open')
+@mock.patch(builtin_open)
 def test_get_reader_default(open_mock):
     mock_default = mock.Mock()
     open_mock.return_value = open_return = mock.Mock()
@@ -65,7 +73,7 @@ def test_inner_error():
     with mock.patch('main.ProtonHelper', mock_helper_cls):
         orig_stderr = sys.stderr
         try:
-            sys.stderr = StringIO.StringIO()
+            sys.stderr = StringIO()
             main.generate_output(mock_reader, mock_scorer)
             assert False, "Should have exited from inner error"
         except SystemExit as se:
@@ -80,7 +88,7 @@ def test_inner_error():
 
 def run_full_system(input_stream, expected_output):
     mock_io = mock.Mock()
-    mock_io.stdout = StringIO.StringIO()
+    mock_io.stdout = StringIO()
     mock_io.stdin = input_stream
     mock_io.argv = ['test']
 

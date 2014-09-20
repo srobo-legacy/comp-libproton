@@ -5,7 +5,13 @@ import sys
 import traceback
 import yaml
 
-from proton_helper import ProtonHelper
+try:
+    # python 3
+    from .proton_helper import ProtonHelper
+except:
+    # python 2
+    from proton_helper import ProtonHelper
+
 
 def generate_output(file_reader, scorer):
     helper = ProtonHelper(yaml.load)
