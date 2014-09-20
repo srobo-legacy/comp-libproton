@@ -9,8 +9,6 @@ import yaml
 
 import helpers
 
-import nose.tools as nose
-
 helpers.path_bodge()
 
 import main
