@@ -1,3 +1,6 @@
 /__pycache__
 *.pyc
 .coverage
+libproton.egg-info
+dist
+build
