@@ -22,7 +22,12 @@ class Scorer:
         self._teams_data = teams_data
 
     def calculate_scores(self):
-        # Whatever you need to do to work out each team's scores
+        """Main scoring entry point.
+
+           Expected to return a mapping of TLA -> score for each team in
+           the input data. Errors either in the input or otherwise should
+           be handled by raising exceptions.
+        """
         scores = {}
         for tla in self._teams_data.keys():
             scores[tla] = 4
