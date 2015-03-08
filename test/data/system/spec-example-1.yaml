@@ -13,3 +13,4 @@ teams:
     QEH1:
      squares : [[0,0,0],[6,0,0],[0,0,0]]
      zone : 3
+other: 42

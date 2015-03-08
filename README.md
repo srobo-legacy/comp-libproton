@@ -17,14 +17,30 @@ the expected usage of the library.
 
 import libproton
 
-def scorer(teams_data):
-    # Whatever you need to do to work out the team's scores
-    scores = {}
-    for tla in teams_data.keys():
-        scores[tla] = 4
-    return scores
+class Scorer:
+    def __init__(self, teams_data):
+        self._teams_data = teams_data
 
-libproton.main(scorer)
+    def calculate_scores(self):
+        # Whatever you need to do to work out each team's scores
+        scores = {}
+        for tla in self._teams_data.keys():
+            scores[tla] = 4
+        return scores
+
+    def validate(self, extra_data):
+        """An optional additional method to validate the scoresheet.
+
+           If this method is implemented it will be called with the value
+           of the ``other`` key from the input. If the key is not present
+           then this method will still be called (with ``None``).
+
+           If there are validation errors the this method should raise
+           an exception about them.
+        """
+        pass
+
+libproton.main(Scorer)
 ~~~~
 
 ## Tests

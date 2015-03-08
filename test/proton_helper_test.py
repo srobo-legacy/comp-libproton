@@ -74,6 +74,59 @@ def test_team_scoresheets():
 
     assert team_scoresheets == teams_data_complete
 
+def test_extra_data():
+    extra_data = 'extra_data'
+    loaded_data = {
+        "arena_id": 'A',
+        "match_number": 1,
+        "teams": {
+            "TLA1": {
+                "zone": 0,
+                "bacon": 4,
+                # defaults
+            },
+            "TLA2": {
+                "zone": 2,
+                "bacon": 13,
+                "present": False,
+                "disqualified": True,
+            },
+        },
+        "other": extra_data
+    }
+
+    ph = assert_load(loaded_data)
+
+    actual_data = ph.extra_data
+
+    assert extra_data == actual_data
+
+def test_no_extra_data():
+    extra_data = 'extra_data'
+    loaded_data = {
+        "arena_id": 'A',
+        "match_number": 1,
+        "teams": {
+            "TLA1": {
+                "zone": 0,
+                "bacon": 4,
+                # defaults
+            },
+            "TLA2": {
+                "zone": 2,
+                "bacon": 13,
+                "present": False,
+                "disqualified": True,
+            },
+        },
+    }
+
+    ph = assert_load(loaded_data)
+
+    actual_data = ph.extra_data
+
+    assert actual_data is None, "Should return None when no extra data"
+
 def test_produce():
     input_ = {
         "arena_id": 'A',

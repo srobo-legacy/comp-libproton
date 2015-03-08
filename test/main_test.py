@@ -60,7 +60,7 @@ def test_get_reader_help():
 
 def test_inner_error():
     mock_helper_cls = mock.Mock()
-    mock_helper = mock.Mock()
+    mock_helper = mock.Mock(extra_data = 'extra_data')
     mock_helper_cls.return_value = mock_helper
 
     mock_reader = mock.Mock()
@@ -82,6 +82,27 @@ def test_inner_error():
             assert 'Traceback' in output
             assert exception_message in output
 
+def test_no_validation():
+    mock_helper_cls = mock.Mock()
+    mock_helper = mock.Mock(extra_data = 'extra_data')
+    mock_helper_cls.return_value = mock_helper
+
+    mock_reader = mock.Mock()
+    mock_reader.read = mock.Mock(return_value = '')
+
+    scores = 'SCORES'
+    mock_calc_scores = mock.Mock(return_value = scores)
+    mock_scorer = mock.Mock(spec = ['calculate_scores'],
+                            calculate_scores = mock_calc_scores)
+    mock_scorer_cls = mock.Mock(return_value = mock_scorer)
+
+    fake_stderr = StringIO()
+
+    with mock.patch('main.ProtonHelper', mock_helper_cls):
+        main.generate_output(mock_reader, mock_scorer_cls, fake_stderr)
+
+        mock_helper.produce.assert_called_with(scores)
+
 # helper for system tests
 
 def run_full_system(input_stream, expected_output):
@@ -91,10 +112,13 @@ def run_full_system(input_stream, expected_output):
     mock_io.stdin = input_stream
     mock_io.argv = ['test']
 
-    def scorer(teams_data):
-        return {name: data["zone"] for name, data in teams_data.items()}
+    class Scorer:
+        def __init__(self, teams_data):
+            self._teams_data = teams_data
+        def calculate_scores(self):
+            return {name: data["zone"] for name, data in self._teams_data.items()}
 
-    main.main(scorer, io = mock_io)
+    main.main(Scorer, io = mock_io)
 
     print('stdout:\n', mock_io.stdout.getvalue())
     print('stderr:\n', mock_io.stderr.getvalue())

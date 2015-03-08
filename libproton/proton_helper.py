@@ -14,6 +14,10 @@ class ProtonHelper:
     def team_scoresheets(self):
         return copy.deepcopy(self._input['teams'])
 
+    @property
+    def extra_data(self):
+        return copy.deepcopy(self._input.get('other'))
+
     def produce(self, team_scores):
         whole_scores = self.generate_whole_scores(team_scores)
         return {

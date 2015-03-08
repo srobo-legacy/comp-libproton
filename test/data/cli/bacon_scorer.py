@@ -8,11 +8,19 @@ sys.path.insert(0, path)
 
 import libproton
 
-def scorer(teams_data):
-    scores = {}
-    for tla, value in teams_data.items():
-        # Double the bacon and add 5, for fun
-        scores[tla] = 5 + 2*value['bacon']
-    return scores
+class Scorer:
+    def __init__(self, teams_data):
+        self._teams_data = teams_data
 
-libproton.main(scorer)
+    def calculate_scores(self):
+        scores = {}
+        for tla, value in self._teams_data.items():
+            # Double the bacon and add 5, for fun
+            scores[tla] = 5 + 2*value['bacon']
+        return scores
+
+    def validate(self, extra_data):
+        assert extra_data == 42 or extra_data is None, \
+                "Optional extra should be 42 if present"
+
+libproton.main(Scorer)
