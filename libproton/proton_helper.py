@@ -2,7 +2,7 @@
 import copy
 
 class ProtonHelper:
-    version = "1.0.0"
+    version = "2.0.0-rc1"
     def __init__(self, loader):
         self._loader = loader
 
