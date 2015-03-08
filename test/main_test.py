@@ -70,25 +70,24 @@ def test_inner_error():
     exception_message = 'Boom!'
     mock_scorer.side_effect = Exception(exception_message)
 
+    fake_stderr = StringIO()
+
     with mock.patch('main.ProtonHelper', mock_helper_cls):
-        orig_stderr = sys.stderr
         try:
-            sys.stderr = StringIO()
-            main.generate_output(mock_reader, mock_scorer)
+            main.generate_output(mock_reader, mock_scorer, fake_stderr)
             assert False, "Should have exited from inner error"
         except SystemExit as se:
             assert se.code == 2
-            output = sys.stderr.getvalue()
+            output = fake_stderr.getvalue()
             assert 'Traceback' in output
             assert exception_message in output
-        finally:
-            sys.stderr = orig_stderr
 
 # helper for system tests
 
 def run_full_system(input_stream, expected_output):
     mock_io = mock.Mock()
     mock_io.stdout = StringIO()
+    mock_io.stderr = StringIO()
     mock_io.stdin = input_stream
     mock_io.argv = ['test']
 
@@ -97,7 +96,8 @@ def run_full_system(input_stream, expected_output):
 
     main.main(scorer, io = mock_io)
 
-    print(mock_io.stdout.getvalue())
+    print('stdout:\n', mock_io.stdout.getvalue())
+    print('stderr:\n', mock_io.stderr.getvalue())
     print(yaml.dump(expected_output))
     output = yaml.load(mock_io.stdout.getvalue())
     assert output == expected_output

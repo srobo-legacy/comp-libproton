@@ -13,7 +13,7 @@ except (ValueError, SystemError):
     from proton_helper import ProtonHelper
 
 
-def generate_output(file_reader, scorer):
+def generate_output(file_reader, scorer, stderr):
     helper = ProtonHelper(yaml.load)
 
     # Load also validates the input as far as possible
@@ -25,7 +25,7 @@ def generate_output(file_reader, scorer):
     try:
         scores = scorer(team_scoresheets)
     except:
-        print(traceback.format_exc(), file=sys.stderr)
+        print(traceback.format_exc(), file=stderr)
         exit(2)
 
     assert scores is not None
@@ -47,5 +47,5 @@ def get_reader(args, reader):
 
 def main(scorer, io = sys):
     reader = get_reader(io.argv, io.stdin)
-    output = generate_output(reader, scorer)
+    output = generate_output(reader, scorer, io.stderr)
     yaml.dump(output, io.stdout)
