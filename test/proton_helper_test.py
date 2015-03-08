@@ -21,6 +21,7 @@ def assert_load(data_to_load):
 
 def test_load():
     loaded_data = {
+        "arena_id": 'A',
         "match_number": 1,
         "teams": {
             "TLA1": {
@@ -50,6 +51,7 @@ def test_team_scoresheets():
         },
     }
     loaded_data = {
+        "arena_id": 'A',
         "match_number": 1,
         "teams": {
             "TLA1": {
@@ -74,6 +76,7 @@ def test_team_scoresheets():
 
 def test_produce():
     input_ = {
+        "arena_id": 'A',
         "match_number": 1,
         "teams": {
             "TLA1": {
@@ -96,8 +99,9 @@ def test_produce():
 
     whole = ph.produce(scores)
 
-    assert whole["version"] == "1.0.0-rc1"
+    assert whole["version"] == "1.0.0"
     assert whole["match_number"] == 1
+    assert whole["arena_id"] == 'A'
     assert whole["scores"] == {
         "TLA1": helpers.tla_result_fixture(0, 0),
         "TLA2": {

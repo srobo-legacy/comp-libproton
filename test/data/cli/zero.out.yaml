@@ -1,5 +1,6 @@
-version: 1.0.0-rc1
+version: 1.0.0
 match_number: 0
+arena_id: A
 scores:
     TLA1:
         score: 5

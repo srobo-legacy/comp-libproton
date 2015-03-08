@@ -2,7 +2,7 @@
 import copy
 
 class ProtonHelper:
-    version = "1.0.0-rc1"
+    version = "1.0.0"
     def __init__(self, loader):
         self._loader = loader
 
@@ -19,6 +19,7 @@ class ProtonHelper:
         return {
             "version"      : self.version,
             "match_number" : self._input["match_number"],
+            "arena_id"     : self._input["arena_id"],
             "scores"       : whole_scores,
         }
 
