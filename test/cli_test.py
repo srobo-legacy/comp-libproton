@@ -46,10 +46,8 @@ def test_input_file():
         yield check_by_input_file, input_name
 
 def test_stdin():
-    """
-    A proton compliant program MUST consume YAML from stdin
-    if it is not given a filename.
-    """
+    # A proton compliant program MUST consume YAML from stdin
+    # if it is not given a filename.
 
     zeros_input = open('test/data/cli/zero.yaml', 'r')
     zeros_output = yaml.load(open('test/data/cli/zero.out.yaml').read())
