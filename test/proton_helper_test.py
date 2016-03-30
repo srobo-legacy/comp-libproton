@@ -152,7 +152,7 @@ def test_produce():
 
     whole = ph.produce(scores)
 
-    assert whole["version"] == "2.0.0-rc1"
+    assert whole["version"] == "2.0.0"
     assert whole["match_number"] == 1
     assert whole["arena_id"] == 'A'
     assert whole["scores"] == {
