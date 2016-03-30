@@ -43,7 +43,7 @@ def test_get_reader_default(open_mock):
 
     assert reader is mock_default, 'Should have returned the file reader'
 
-    open_mock.assert_no_calls()
+    assert not open_mock.called
 
 def test_get_reader_help():
     def run(arg):
