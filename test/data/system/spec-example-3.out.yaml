@@ -1,23 +1,18 @@
 version: 3.0.0-rc2
-match_number: 3
-arena_id: A
+match_number: 5
+arena_id: B
 scores:
     CLF:
-     score: 0
+     score: 1
      zone: 0
      disqualified: false
-     present: true
+     present: false
     PSC:
-     score: 1
+     score: 6
      zone: 1
      disqualified: false
      present: true
-    BGR:
-     score: 2
-     zone: 2
-     disqualified: false
-     present: true
-    QEH1:
+    QEH:
      score: 3
      zone: 3
      disqualified: false

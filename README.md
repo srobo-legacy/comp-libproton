@@ -18,8 +18,9 @@ the expected usage of the library.
 import libproton
 
 class Scorer:
-    def __init__(self, teams_data):
+    def __init__(self, teams_data, arena_data):
         self._teams_data = teams_data
+        self._arena_data = arena_data
 
     def calculate_scores(self):
         """Main scoring entry point.

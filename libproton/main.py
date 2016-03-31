@@ -20,11 +20,12 @@ def generate_output(file_reader, scorer_cls, stderr):
     helper.load(file_reader.read())
 
     team_scoresheets = helper.team_scoresheets
+    arena_data       = helper.arena_data
     extra_data       = helper.extra_data
 
     scores = None
     try:
-        scorer = scorer_cls(team_scoresheets)
+        scorer = scorer_cls(team_scoresheets, arena_data)
         scores = scorer.calculate_scores()
 
         # Also check the validation, if supported. Explicit pre-check so

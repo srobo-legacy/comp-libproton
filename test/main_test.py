@@ -113,10 +113,16 @@ def run_full_system(input_stream, expected_output):
     mock_io.argv = ['test']
 
     class Scorer:
-        def __init__(self, teams_data):
+        def __init__(self, teams_data, arena_data):
             self._teams_data = teams_data
+            self._arena_data = arena_data or {}
         def calculate_scores(self):
-            return {name: data["zone"] for name, data in self._teams_data.items()}
+            scores = {}
+            for name, data in self._teams_data.items():
+                zone = data["zone"]
+                zone_score = self._arena_data.get(zone, {}).get('tokens', 0)
+                scores[name] = zone + zone_score
+            return scores
 
     main.main(Scorer, io = mock_io)
 

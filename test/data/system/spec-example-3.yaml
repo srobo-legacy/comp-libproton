@@ -1,0 +1,15 @@
+match_number: 5
+arena_id: B
+arena_zones:
+     0:
+          tokens: 1
+     1:
+          tokens: 5
+teams:
+    CLF:
+     zone: 0
+     present : false
+    PSC:
+     zone: 1
+    QEH:
+     zone: 3

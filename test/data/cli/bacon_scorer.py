@@ -9,7 +9,7 @@ sys.path.insert(0, path)
 import libproton
 
 class Scorer:
-    def __init__(self, teams_data):
+    def __init__(self, teams_data, arena_data):
         self._teams_data = teams_data
 
     def calculate_scores(self):

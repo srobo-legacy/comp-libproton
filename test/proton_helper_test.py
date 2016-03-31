@@ -126,6 +126,58 @@ def test_no_extra_data():
 
     assert actual_data is None, "Should return None when no extra data"
 
+def test_arena_data():
+    arena_data = 'arena_data'
+    loaded_data = {
+        "arena_id": 'A',
+        "match_number": 1,
+        "teams": {
+            "TLA1": {
+                "zone": 0,
+                "bacon": 4,
+                # defaults
+            },
+            "TLA2": {
+                "zone": 2,
+                "bacon": 13,
+                "present": False,
+                "disqualified": True,
+            },
+        },
+        "arena_zones": arena_data
+    }
+
+    ph = assert_load(loaded_data)
+
+    actual_data = ph.arena_data
+
+    assert arena_data == actual_data
+
+def test_no_arena_data():
+    loaded_data = {
+        "arena_id": 'A',
+        "match_number": 1,
+        "teams": {
+            "TLA1": {
+                "zone": 0,
+                "bacon": 4,
+                # defaults
+            },
+            "TLA2": {
+                "zone": 2,
+                "bacon": 13,
+                "present": False,
+                "disqualified": True,
+            },
+        },
+    }
+
+    ph = assert_load(loaded_data)
+
+    actual_data = ph.arena_data
+
+    assert actual_data is None, "Should return None when no arena data"
+
 def test_produce():
     input_ = {
         "arena_id": 'A',
@@ -151,7 +203,7 @@ def test_produce():
 
     whole = ph.produce(scores)
 
-    assert whole["version"] == "2.0.0"
+    assert whole["version"] == "3.0.0-rc2"
     assert whole["match_number"] == 1
     assert whole["arena_id"] == 'A'
     assert whole["scores"] == {
