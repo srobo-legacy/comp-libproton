@@ -102,7 +102,6 @@ def test_extra_data():
     assert extra_data == actual_data
 
 def test_no_extra_data():
-    extra_data = 'extra_data'
     loaded_data = {
         "arena_id": 'A',
         "match_number": 1,
