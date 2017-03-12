@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/PeterJCLaw/libproton.png)](https://travis-ci.org/PeterJCLaw/libproton)
 
 This is a library which simplifies the task of creating
-[Proton](https://github.com/samphippen/proton) compliant scoring scripts.
+[Proton](https://github.com/PeterJCLaw/proton) compliant scoring scripts.
 
 It supports Python 2.7 and 3.x.
 
