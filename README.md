@@ -12,7 +12,7 @@ It supports Python 2.7 and 3.x.
 The following is a complete and minimal Proton compliant scorer, and shows
 the expected usage of the library.
 
-~~~~ .python
+~~~~ python
 #!/usr/bin/env python
 
 import libproton
