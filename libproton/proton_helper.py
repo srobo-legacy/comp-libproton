@@ -33,10 +33,8 @@ class ProtonHelper:
 
     def _fill_defaults(self, teams_data):
         for team_data in teams_data.values():
-            if "present" not in team_data:
-                team_data["present"] = True
-            if "disqualified" not in team_data:
-                team_data["disqualified"] = False
+            team_data.setdefault("present", True)
+            team_data.setdefault("disqualified", False)
 
     def generate_whole_scores(self, team_scores):
         assert self._input is not None, "Cannot generate whole scores without loading input."
