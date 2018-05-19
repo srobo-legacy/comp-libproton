@@ -23,4 +23,5 @@ class Scorer:
         assert extra_data == 42 or extra_data is None, \
                 "Optional extra should be 42 if present"
 
-libproton.main(Scorer)
+if __name__ == '__main__':
+    libproton.main(Scorer)

@@ -46,7 +46,8 @@ class Scorer:
         """
         pass
 
-libproton.main(Scorer)
+if __name__ == '__main__:
+    libproton.main(Scorer)
 ~~~~
 
 ## Tests
