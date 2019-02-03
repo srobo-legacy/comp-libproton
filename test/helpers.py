@@ -8,8 +8,7 @@ def root():
     return os.path.dirname(mydir)
 
 def path_bodge():
-    path = os.path.join(root(), "libproton")
-    sys.path.insert(0, path)
+    sys.path.insert(0, root())
 
 def tla_result_fixture(zone_number, score = 0):
     return {

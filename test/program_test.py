@@ -19,7 +19,7 @@ import helpers
 
 helpers.path_bodge()
 
-import main
+from libproton import program
 
 @mock.patch(builtin_open)
 def test_get_reader_file(open_mock):
@@ -27,7 +27,7 @@ def test_get_reader_file(open_mock):
     open_mock.return_value = open_return = mock.Mock()
 
     file_name = 'bees'
-    reader = main.get_reader(['self', file_name], mock_default)
+    reader = program.get_reader(['self', file_name], mock_default)
 
     assert reader is open_return, 'Should have returned the file reader'
 
@@ -39,7 +39,7 @@ def test_get_reader_default(open_mock):
     open_mock.return_value = open_return = mock.Mock()
 
     file_name = 'bees'
-    reader = main.get_reader(['self'], mock_default)
+    reader = program.get_reader(['self'], mock_default)
 
     assert reader is mock_default, 'Should have returned the file reader'
 
@@ -49,7 +49,7 @@ def test_get_reader_help():
     def run(arg):
         mock_default = mock.Mock()
         try:
-            main.get_reader(['self', arg], mock_default)
+            program.get_reader(['self', arg], mock_default)
             assert False, "Should have exited with usage information"
         except SystemExit as se:
             assert "Usage: " in se.args[0]
@@ -72,9 +72,9 @@ def test_inner_error():
 
     fake_stderr = StringIO()
 
-    with mock.patch('main.ProtonHelper', mock_helper_cls):
+    with mock.patch('libproton.program.ProtonHelper', mock_helper_cls):
         try:
-            main.generate_output(mock_reader, mock_scorer, fake_stderr)
+            program.generate_output(mock_reader, mock_scorer, fake_stderr)
             assert False, "Should have exited from inner error"
         except SystemExit as se:
             assert se.code == 2
@@ -98,8 +98,8 @@ def test_no_validation():
 
     fake_stderr = StringIO()
 
-    with mock.patch('main.ProtonHelper', mock_helper_cls):
-        main.generate_output(mock_reader, mock_scorer_cls, fake_stderr)
+    with mock.patch('libproton.program.ProtonHelper', mock_helper_cls):
+        program.generate_output(mock_reader, mock_scorer_cls, fake_stderr)
 
         mock_helper.produce.assert_called_with(scores)
 
@@ -124,7 +124,7 @@ def run_full_system(input_stream, expected_output):
                 scores[name] = zone + zone_score
             return scores
 
-    main.main(Scorer, io = mock_io)
+    program.main(Scorer, io = mock_io)
 
     print('stdout:\n', mock_io.stdout.getvalue())
     print('stderr:\n', mock_io.stderr.getvalue())

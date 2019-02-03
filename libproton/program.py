@@ -5,12 +5,7 @@ import sys
 import traceback
 import yaml
 
-try:
-    # python 3
-    from .proton_helper import ProtonHelper
-except (ValueError, SystemError):
-    # python 2
-    from proton_helper import ProtonHelper
+from .proton_helper import ProtonHelper
 
 
 def generate_output(file_reader, scorer_cls, stderr):

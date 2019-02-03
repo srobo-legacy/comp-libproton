@@ -5,7 +5,7 @@ import helpers
 
 helpers.path_bodge()
 
-from proton_helper import ProtonHelper
+from libproton import ProtonHelper
 
 def assert_load(data_to_load):
     mock_loader = mock.Mock()
